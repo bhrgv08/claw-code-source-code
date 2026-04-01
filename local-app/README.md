@@ -9,6 +9,7 @@ This folder provides a **fully local, runnable TypeScript application** inspired
 - Models (`src/models/*`)
 - Tool system (`src/tools/*`)
 - Persistent session state (`data/*.json`, when run from `local-app/`)
+- Persistent session state (`local-app/data/*.json`)
 
 > Important: this is a practical local runtime scaffold, **not** the original full proprietary cloud product. The upstream reconstruction indicates missing feature-gated internal modules, so a 1:1 full rebuild is not possible from published artifacts alone.
 
@@ -25,13 +26,6 @@ This folder provides a **fully local, runnable TypeScript application** inspired
   - `/tools`
   - `/history`
   - `/exit`
-- Automated smoke test (`npm test`)
-
-## Security Notes
-
-- All tool file paths are constrained to the workspace root.
-- Read/write size limits are enforced (1MB max per operation) to reduce abuse risk.
-- `list_files` validates that target paths are directories, and `read_file` validates file targets.
 
 ## Requirements
 
