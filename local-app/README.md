@@ -8,6 +8,7 @@ This folder provides a **fully local, runnable TypeScript application** inspired
 - Services (`src/services/*`)
 - Models (`src/models/*`)
 - Tool system (`src/tools/*`)
+- Persistent session state (`data/*.json`, when run from `local-app/`)
 - Persistent session state (`local-app/data/*.json`)
 
 > Important: this is a practical local runtime scaffold, **not** the original full proprietary cloud product. The upstream reconstruction indicates missing feature-gated internal modules, so a 1:1 full rebuild is not possible from published artifacts alone.
@@ -37,6 +38,7 @@ This folder provides a **fully local, runnable TypeScript application** inspired
 cd local-app
 npm install
 npm run build
+npm test
 npm start
 ```
 
