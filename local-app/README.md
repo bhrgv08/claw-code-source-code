@@ -25,6 +25,13 @@ This folder provides a **fully local, runnable TypeScript application** inspired
   - `/tools`
   - `/history`
   - `/exit`
+- Automated smoke test (`npm test`)
+
+## Security Notes
+
+- All tool file paths are constrained to the workspace root.
+- Read/write size limits are enforced (1MB max per operation) to reduce abuse risk.
+- `list_files` validates that target paths are directories, and `read_file` validates file targets.
 
 ## Requirements
 
@@ -37,6 +44,7 @@ This folder provides a **fully local, runnable TypeScript application** inspired
 cd local-app
 npm install
 npm run build
+npm test
 npm start
 ```
 

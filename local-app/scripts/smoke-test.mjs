@@ -24,6 +24,17 @@ const write = registry.run('write_file', { path: outFile, content: 'smoke-ok' },
 assert.equal(write.ok, true);
 assert.equal(fs.readFileSync(path.resolve(config.workspaceRoot, outFile), 'utf8'), 'smoke-ok');
 
+const traversalAttempt = registry.run('read_file', { path: '../etc/passwd' }, config.workspaceRoot);
+assert.equal(traversalAttempt.ok, false);
+assert.match(traversalAttempt.output, /escapes workspace root/i);
+
+const tooLarge = registry.run('write_file', {
+  path: 'local-app/data/too-large.txt',
+  content: 'a'.repeat(1024 * 1024 + 1)
+}, config.workspaceRoot);
+assert.equal(tooLarge.ok, false);
+assert.match(tooLarge.output, /too large/i);
+
 const svc = new SessionService(config.dataDir, 10);
 let session = svc.loadOrCreate('smoke-session');
 session = svc.appendMessage(session, { role: 'user', content: 'hello', timestamp: new Date().toISOString() });
