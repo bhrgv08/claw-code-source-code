@@ -15,12 +15,6 @@ export class ToolRegistry {
   run(name: string, args: Record<string, string>, workspaceRoot: string): ToolResult {
     const tool = this.tools.get(name);
     if (!tool) return { ok: false, output: `Unknown tool: ${name}` };
-
-    try {
-      return tool.run(args, { workspaceRoot });
-    } catch (error) {
-      const message = error instanceof Error ? error.message : String(error);
-      return { ok: false, output: `Tool execution failed (${name}): ${message}` };
-    }
+    return tool.run(args, { workspaceRoot });
   }
 }
