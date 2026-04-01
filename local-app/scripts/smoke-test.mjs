@@ -15,6 +15,10 @@ assert.ok(list.includes('list_files'));
 assert.ok(list.includes('read_file'));
 assert.ok(list.includes('write_file'));
 
+const unknown = registry.run('does_not_exist', {}, config.workspaceRoot);
+assert.equal(unknown.ok, false);
+assert.match(unknown.output, /Unknown tool/);
+
 const readMe = registry.run('read_file', { path: 'README.md' }, config.workspaceRoot);
 assert.equal(readMe.ok, true);
 assert.match(readMe.output, /Local Claude-Like Runtime/);
